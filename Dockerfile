@@ -21,4 +21,4 @@ COPY . .
 # Install dependencies
 RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
-CMD ["python", "template_python/core.py"]
+CMD ["python", "workshop_azure_iot/core.py"]
