@@ -1,5 +1,5 @@
 {
-    "name": "template-python",
+    "name": "workshop-azure-iot",
     // https://mcr.microsoft.com/en-us/product/devcontainers/python/tags
     "image": "mcr.microsoft.com/devcontainers/python:dev-3.10-bookworm",
     "customizations": {

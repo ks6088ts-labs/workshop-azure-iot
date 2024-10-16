@@ -4,7 +4,7 @@ on:
     tags:
       - "v*"
 env:
-  IMAGE_NAME: template-python
+  IMAGE_NAME: workshop-azure-iot
 jobs:
   ghcr:
     runs-on: ubuntu-latest
