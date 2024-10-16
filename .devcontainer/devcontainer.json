@@ -1,0 +1,16 @@
+{
+    "name": "template-python",
+    // https://mcr.microsoft.com/en-us/product/devcontainers/python/tags
+    "image": "mcr.microsoft.com/devcontainers/python:dev-3.10-bookworm",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "charliermarsh.ruff",
+                "GitHub.copilot-chat"
+            ]
+        }
+    },
+    "postCreateCommand": "pipx install poetry && make install-deps-dev",
+    "remoteUser": "vscode"
+}
