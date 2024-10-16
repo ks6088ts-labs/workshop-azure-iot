@@ -1,26 +1,19 @@
-# References
+# workshop-azure-iot
 
-## Azure Functions
+This repository is for a workshop using Azure IoT services.
 
-Run the function app locally
+## Prerequisites
 
-```shell
-# Run the function app locally with the Azure Functions Core Tools
-$ poetry run func start
-```
+To run all the projects in this repository, you need the followings.
 
-Deploy the function app to Azure
+- [Python 3.10+](https://www.python.org/downloads/)
+<!-- add services here -->
 
-```shell
-# Deploy resources to Azure
-$ bash scripts/deploy_azure_functions_resources.sh
+Here are the preferred tools for development.
 
-$ export FUNCTION_APP_NAME="CHANGE_ME"
+- [Poetry](https://python-poetry.org/docs/#installation)
+- [GNU Make](https://www.gnu.org/software/make/)
 
-# Publish the function app to Azure
-$ bash scripts/publish_azure_functions.sh
-```
+## Scenarios
 
-### References
-
-- [Using FastAPI Framework with Azure Functions](https://learn.microsoft.com/en-us/samples/azure-samples/fastapi-on-azure-functions/fastapi-on-azure-functions/)
+- [Azure IoT Hub Messaging](scenarios/1_azure_iot_hub_messaging)
