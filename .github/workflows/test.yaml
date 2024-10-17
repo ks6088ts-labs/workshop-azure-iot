@@ -32,4 +32,5 @@ jobs:
       - name: Run CI tests
         shell: bash
         run: |
+          find . -maxdepth 1 -name "*.env.template" -exec sh -c 'cp "$1" "${1%.env.template}.env"' _ {} \;
           SKIP_TEST=True make ci-test
