@@ -48,6 +48,27 @@ files = [
 dev = ["azure-functions-durable", "coverage", "flake8 (>=4.0.1,<4.1.0)", "flake8-logging-format", "mypy", "pytest", "pytest-cov", "requests (==2.*)"]
 
 [[package]]
+name = "azure-iot-device"
+version = "2.14.0"
+description = "Microsoft Azure IoT Device Library"
+optional = false
+python-versions = "<4,>=3.8"
+files = [
+    {file = "azure_iot_device-2.14.0-py3-none-any.whl", hash = "sha256:db5e401132cdf98d56a758382e3c332384d445b22f574ffb4ea684c7f63345fb"},
+    {file = "azure_iot_device-2.14.0.tar.gz", hash = "sha256:b6d48d4932c240025736ace544c4e71bc49a1576ac998ea1de778af82496ffce"},
+]
+
+[package.dependencies]
+deprecation = ">=2.1.0,<3.0.0"
+janus = "*"
+paho-mqtt = ">=1.6.1,<2.0.0"
+PySocks = "*"
+requests = ">=2.32.3,<3.0.0"
+requests-unixsocket2 = ">=0.4.1"
+typing-extensions = "*"
+urllib3 = ">=2.2.2,<3.0.0"
+
+[[package]]
 name = "babel"
 version = "2.16.0"
 description = "Internationalization utilities"
@@ -298,6 +319,20 @@ tomli = {version = "*", optional = true, markers = "python_full_version <= \"3.1
 
 [package.extras]
 toml = ["tomli"]
+
+[[package]]
+name = "deprecation"
+version = "2.1.0"
+description = "A library to handle automated deprecations"
+optional = false
+python-versions = "*"
+files = [
+    {file = "deprecation-2.1.0-py2.py3-none-any.whl", hash = "sha256:a10811591210e1fb0e768a8c25517cabeabcba6f0bf96564f8ff45189f90b14a"},
+    {file = "deprecation-2.1.0.tar.gz", hash = "sha256:72b3bde64e5d778694b0cf68178aed03d15e15477116add3fb773e581f9518ff"},
+]
+
+[package.dependencies]
+packaging = "*"
 
 [[package]]
 name = "distlib"
@@ -588,6 +623,20 @@ files = [
 ]
 
 [[package]]
+name = "janus"
+version = "1.0.0"
+description = "Mixed sync-async queue to interoperate between asyncio tasks and classic threads"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "janus-1.0.0-py3-none-any.whl", hash = "sha256:2596ea5482711c1ee3ef2df6c290aaf370a13c55a007826e8f7c32d696d1d00a"},
+    {file = "janus-1.0.0.tar.gz", hash = "sha256:df976f2cdcfb034b147a2d51edfc34ff6bfb12d4e2643d3ad0e10de058cb1612"},
+]
+
+[package.dependencies]
+typing-extensions = ">=3.7.4.3"
+
+[[package]]
 name = "jinja2"
 version = "3.1.4"
 description = "A very fast and expressive template engine."
@@ -859,6 +908,19 @@ dev = ["pytest", "tox"]
 lint = ["black"]
 
 [[package]]
+name = "paho-mqtt"
+version = "1.6.1"
+description = "MQTT version 5.0/3.1.1 client class"
+optional = false
+python-versions = "*"
+files = [
+    {file = "paho-mqtt-1.6.1.tar.gz", hash = "sha256:2a8291c81623aec00372b5a85558a372c747cbca8e9934dfe218638b8eefc26f"},
+]
+
+[package.extras]
+proxy = ["PySocks"]
+
+[[package]]
 name = "pathspec"
 version = "0.12.1"
 description = "Utility library for gitignore style pattern matching of file paths."
@@ -1093,6 +1155,18 @@ pyyaml = "*"
 
 [package.extras]
 extra = ["pygments (>=2.12)"]
+
+[[package]]
+name = "pysocks"
+version = "1.7.1"
+description = "A Python SOCKS client module. See https://github.com/Anorov/PySocks for more information."
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+files = [
+    {file = "PySocks-1.7.1-py27-none-any.whl", hash = "sha256:08e69f092cc6dbe92a0fdd16eeb9b9ffbc13cadfe5ca4c7bd92ffb078b293299"},
+    {file = "PySocks-1.7.1-py3-none-any.whl", hash = "sha256:2725bd0a9925919b9b51739eea5f9e2bae91e83288108a9ad338b2e3a4435ee5"},
+    {file = "PySocks-1.7.1.tar.gz", hash = "sha256:3f8804571ebe159c380ac6de37643bb4685970655d3bba243530d6558b799aa0"},
+]
 
 [[package]]
 name = "pytest"
@@ -1372,6 +1446,21 @@ urllib3 = ">=1.21.1,<3"
 [package.extras]
 socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
+
+[[package]]
+name = "requests-unixsocket2"
+version = "0.4.2"
+description = "Use requests to talk HTTP via a UNIX domain socket"
+optional = false
+python-versions = "<4.0.0,>=3.8.1"
+files = [
+    {file = "requests_unixsocket2-0.4.2-py3-none-any.whl", hash = "sha256:701fcd49d74bc0f759bbe45c4dfda0045fd89652948c2b473b1a312214c3770b"},
+    {file = "requests_unixsocket2-0.4.2.tar.gz", hash = "sha256:929c58ecc5981f3d127661ceb9ec8c76e0f08d31c52e44ab1462ac0dcd55b5f5"},
+]
+
+[package.dependencies]
+requests = ">=2.32.3,<3.0.0"
+urllib3 = ">=2.2.2,<3.0"
 
 [[package]]
 name = "rich"
@@ -1857,4 +1946,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "229143f678f64febf2916f20c084f571afbb5d258b8d820e4e7af00e691d2e33"
+content-hash = "35578d5fe2520ab5010113714345380c08f22fcf4af8b50643559c9361e3a330"

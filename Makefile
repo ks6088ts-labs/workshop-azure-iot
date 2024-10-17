@@ -94,3 +94,14 @@ docs-serve: ## serve documentation
 
 .PHONY: ci-test-docs
 ci-test-docs: docs ## run CI test for documentation
+
+# ---
+# Project
+# ---
+
+.PHONY: server
+server: ## run server
+	poetry run uvicorn workshop_azure_iot.core:app \
+		--host 0.0.0.0 \
+		--port 8000 \
+		--reload
