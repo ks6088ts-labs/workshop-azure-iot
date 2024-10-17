@@ -1,15 +1,14 @@
-import logging
+from logging import getLogger
 
-from workshop_azure_iot.core import hello_world
+from tests.utilities import client
 
-
-def test_hello_world_verbose(caplog):
-    with caplog.at_level(logging.DEBUG):
-        hello_world(verbose=True)
-    assert "Hello World" in caplog.text
+logger = getLogger(__name__)
 
 
-def test_hello_world_non_verbose(caplog):
-    with caplog.at_level(logging.DEBUG):
-        hello_world(verbose=False)
-    assert "Hello, world!" not in caplog.text
+def test_core():
+    path_format = "/core/{0}"
+    response = client.get(
+        url=path_format.format("info"),
+    )
+    assert response.status_code == 200
+    logger.info(f"response: {response.json()}")

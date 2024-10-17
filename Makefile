@@ -49,7 +49,7 @@ ci-test: install-deps-dev format-check lint test ## run CI tests
 # ---
 DOCKER_REPO_NAME ?= ks6088ts
 DOCKER_IMAGE_NAME ?= workshop-azure-iot
-DOCKER_COMMAND ?= python workshop_azure_iot/core.py
+DOCKER_COMMAND ?= python main.py --help
 
 # Tools
 TOOLS_DIR ?= $(HOME)/.local/bin
