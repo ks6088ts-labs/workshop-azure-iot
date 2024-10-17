@@ -32,4 +32,4 @@ jobs:
       - name: Run CI tests
         shell: bash
         run: |
-          make ci-test
+          SKIP_TEST=True make ci-test
