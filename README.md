@@ -10,50 +10,8 @@
 
 # workshop-azure-iot
 
-This is a template repository for Python
+This repository is for a workshop using services related to IoT.
 
-## Prerequisites
+## Docs
 
-- [Python 3.10+](https://www.python.org/downloads/)
-- [Poetry](https://python-poetry.org/docs/#installation)
-- [GNU Make](https://www.gnu.org/software/make/)
-
-## Development instructions
-
-### Local development
-
-Use Makefile to run the project locally.
-
-```shell
-# help
-make
-
-# install dependencies for development
-make install-deps-dev
-
-# run tests
-make test
-
-# run CI tests
-make ci-test
-```
-
-### Docker development
-
-```shell
-# build docker image
-make docker-build
-
-# run docker container
-make docker-run
-
-# run CI tests in docker container
-make ci-test-docker
-```
-
-To publish the docker image to Docker Hub, you need to set the following secrets in the repository settings.
-
-```shell
-gh secret set DOCKERHUB_USERNAME --body $DOCKERHUB_USERNAME
-gh secret set DOCKERHUB_TOKEN --body $DOCKERHUB_TOKEN
-```
+Go to [https://ks6088ts-labs.github.io/workshop-azure-iot/](https://ks6088ts-labs.github.io/workshop-azure-iot/)
