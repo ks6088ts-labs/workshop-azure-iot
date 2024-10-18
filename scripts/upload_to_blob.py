@@ -13,15 +13,10 @@ logger = logging.getLogger(__name__)
 
 
 async def upload_to_blob(
-    file_path: str,
+    device_client: IoTHubDeviceClient,
+    data: bytes,
     blob_name: str,
 ):
-    device_client = IoTHubDeviceClient.create_from_connection_string(getenv("IOT_HUB_DEVICE_CONNECTION_STRING"))
-
-    # connect the client.
-    await device_client.connect()
-    logger.info("Connected with Azure IoT Hub")
-
     # get the Storage SAS information from IoT Hub.
     storage_info = await device_client.get_storage_info_for_blob(blob_name)
     logger.info(f"Got Storage Info: {storage_info}")
@@ -36,11 +31,10 @@ async def upload_to_blob(
             blob_url=f"https://{storage_info['hostName']}/{storage_info['containerName']}/{storage_info['blobName']}{storage_info['sasToken']}"
         )
 
-        with open(file_path, "rb") as data:
-            upload_result = blob_client.upload_blob(
-                data=data,
-                overwrite=True,
-            )
+        upload_result = blob_client.upload_blob(
+            data=data,
+            overwrite=True,
+        )
 
         if hasattr(upload_result, "error_code"):
             result = {
@@ -78,6 +72,24 @@ async def upload_to_blob(
             result["status_code"],
             result["status_description"],
         )
+    return result
+
+
+async def main_impl(
+    data: bytes,
+    blob_name: str,
+):
+    device_client = IoTHubDeviceClient.create_from_connection_string(getenv("IOT_HUB_DEVICE_CONNECTION_STRING"))
+
+    # connect the client.
+    await device_client.connect()
+    logger.info("Connected with Azure IoT Hub")
+
+    await upload_to_blob(
+        device_client=device_client,
+        data=data,
+        blob_name=blob_name,
+    )
 
     # Finally, shut down the client
     await device_client.shutdown()
@@ -92,9 +104,12 @@ def main(
     if verbose:
         logging.basicConfig(level=logging.DEBUG)
 
+    with open(file_path, "rb") as f:
+        data = f.read()
+
     asyncio.run(
-        upload_to_blob(
-            file_path=file_path,
+        main_impl(
+            data=data,
             blob_name=blob_name,
         )
     )

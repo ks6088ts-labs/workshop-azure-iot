@@ -6,7 +6,9 @@ import typer
 from azure.iot.device import MethodResponse
 from azure.iot.device.aio import IoTHubDeviceClient
 from azure.iot.device.iothub.models.methods import MethodRequest
+from capture_image import capture_image_from_camera, capture_image_from_file
 from dotenv import load_dotenv
+from upload_to_blob import upload_to_blob
 
 app = typer.Typer()
 logger = logging.getLogger(__name__)
@@ -23,21 +25,52 @@ async def receive_direct_method():
         logger.info(method_request.name)
         logger.info(method_request.payload)
 
-        # TODO: Determine how to respond to the method request based on the method name
-
-        # Send the response
-        method_response = MethodResponse.create_from_method_request(
-            method_request=method_request,
-            status=200,
-            payload={
-                "result": "Successfully executed method",
-                "request": {
-                    "name": method_request.name,
-                    "payload": method_request.payload,
-                },
-            },
-        )
-        await device_client.send_method_response(method_response)
+        if method_request.name == "capture_image_from_file":
+            data = capture_image_from_file(
+                filename=method_request.payload["filename"],
+            )
+            response = await upload_to_blob(
+                device_client=device_client,
+                data=data,
+                blob_name=method_request.payload["blob_name"],
+            )
+            await device_client.send_method_response(
+                method_response=MethodResponse.create_from_method_request(
+                    method_request=method_request,
+                    status=200,
+                    payload={
+                        "response": response,
+                    },
+                )
+            )
+        if method_request.name == "capture_image_from_camera":
+            data = capture_image_from_camera(
+                index=method_request.payload["index"],
+            )
+            response = await upload_to_blob(
+                device_client=device_client,
+                data=data,
+                blob_name=method_request.payload["blob_name"],
+            )
+            await device_client.send_method_response(
+                method_response=MethodResponse.create_from_method_request(
+                    method_request=method_request,
+                    status=200,
+                    payload={
+                        "response": response,
+                    },
+                )
+            )
+        else:
+            await device_client.send_method_response(
+                method_response=MethodResponse.create_from_method_request(
+                    method_request=method_request,
+                    status=400,
+                    payload={
+                        "response": "unknown method",
+                    },
+                )
+            )
 
     # Set the method request handler on the client
     device_client.on_method_request_received = method_request_handler
