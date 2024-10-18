@@ -17,6 +17,7 @@ pydantic-settings = "^2.5.2"
 azure-iot-device = "^2.14.0"
 openai = "^1.51.2"
 azure-storage-blob = "^12.23.1"
+opencv-python-headless = "^4.10.0.84"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^4.0.1"

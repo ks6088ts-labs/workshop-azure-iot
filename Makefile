@@ -103,6 +103,22 @@ docs-serve: ## serve documentation
 ci-test-docs: docs ## run CI test for documentation
 
 # ---
+# Azure Functions
+# ---
+
+.PHONY: azure-functions
+azure-functions: ## run Azure Functions locally
+	@poetry run func start --verbose
+
+.PHONY: azure-functions-deploy
+azure-functions-deploy: ## deploy Azure Functions
+	@sh scripts/deploy_azure_functions_resources.sh
+
+.PHONY: azure-functions-publish
+azure-functions-publish: ## publish Azure Functions
+	@sh scripts/publish_azure_functions.sh
+
+# ---
 # Project
 # ---
 
@@ -112,3 +128,7 @@ server: ## run server
 		--host 0.0.0.0 \
 		--port 8000 \
 		--reload
+
+.PHONY: env
+env: ## create env files
+	@sh scripts/create_env_files.sh
