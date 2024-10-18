@@ -25,5 +25,4 @@ jobs:
       - name: Run CI tests for Docker
         shell: bash
         run: |
-          find . -maxdepth 1 -name "*.env.template" -exec sh -c 'cp "$1" "${1%.env.template}.env"' _ {} \;
           make ci-test-docker TOOLS_DIR="/home/runner/bin"
