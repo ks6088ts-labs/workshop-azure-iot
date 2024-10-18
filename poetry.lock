@@ -88,6 +88,22 @@ typing-extensions = "*"
 urllib3 = ">=2.2.2,<3.0.0"
 
 [[package]]
+name = "azure-iot-hub"
+version = "2.6.1"
+description = "Microsoft Azure IoTHub Service Library"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, <4"
+files = [
+    {file = "azure-iot-hub-2.6.1.tar.gz", hash = "sha256:e952a7517448d826e3a95d37e9ba258d932e7aa45fde07ea4ded391c45fdf47c"},
+    {file = "azure_iot_hub-2.6.1-py2.py3-none-any.whl", hash = "sha256:560b1aa1c51bc011d0c4de99d34ef4d60d70869c8f6a4187630fab2c21ed9fde"},
+]
+
+[package.dependencies]
+azure-core = ">=1.10.0,<2.0.0"
+msrest = ">=0.6.21,<1.0.0"
+uamqp = ">=1.2.14,<2.0.0"
+
+[[package]]
 name = "azure-storage-blob"
 version = "12.23.1"
 description = "Microsoft Azure Blob Storage Client Library for Python"
@@ -1142,6 +1158,27 @@ files = [
 ]
 
 [[package]]
+name = "msrest"
+version = "0.7.1"
+description = "AutoRest swagger generator Python client runtime."
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "msrest-0.7.1-py3-none-any.whl", hash = "sha256:21120a810e1233e5e6cc7fe40b474eeb4ec6f757a15d7cf86702c369f9567c32"},
+    {file = "msrest-0.7.1.zip", hash = "sha256:6e7661f46f3afd88b75667b7187a92829924446c7ea1d169be8c4bb7eeb788b9"},
+]
+
+[package.dependencies]
+azure-core = ">=1.24.0"
+certifi = ">=2017.4.17"
+isodate = ">=0.6.0"
+requests = ">=2.16,<3.0"
+requests-oauthlib = ">=0.5.0"
+
+[package.extras]
+async = ["aiodns", "aiohttp (>=3.0)"]
+
+[[package]]
 name = "nodeenv"
 version = "1.9.1"
 description = "Node.js virtual environment builder"
@@ -1213,6 +1250,22 @@ files = [
     {file = "numpy-2.1.2-pp310-pypy310_pp73-win_amd64.whl", hash = "sha256:a7d80b2e904faa63068ead63107189164ca443b42dd1930299e0d1cb041cec2e"},
     {file = "numpy-2.1.2.tar.gz", hash = "sha256:13532a088217fa624c99b843eeb54640de23b3414b14aa66d023805eb731066c"},
 ]
+
+[[package]]
+name = "oauthlib"
+version = "3.2.2"
+description = "A generic, spec-compliant, thorough implementation of the OAuth request-signing logic"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "oauthlib-3.2.2-py3-none-any.whl", hash = "sha256:8139f29aac13e25d502680e9e19963e83f16838d48a0d71c287fe40e7067fbca"},
+    {file = "oauthlib-3.2.2.tar.gz", hash = "sha256:9859c40929662bec5d64f34d01c99e093149682a3f38915dc0655d5a633dd918"},
+]
+
+[package.extras]
+rsa = ["cryptography (>=3.0.0)"]
+signals = ["blinker (>=1.4.0)"]
+signedtoken = ["cryptography (>=3.0.0)", "pyjwt (>=2.0.0,<3)"]
 
 [[package]]
 name = "openai"
@@ -1840,6 +1893,24 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
+name = "requests-oauthlib"
+version = "2.0.0"
+description = "OAuthlib authentication support for Requests."
+optional = false
+python-versions = ">=3.4"
+files = [
+    {file = "requests-oauthlib-2.0.0.tar.gz", hash = "sha256:b3dffaebd884d8cd778494369603a9e7b58d29111bf6b41bdc2dcd87203af4e9"},
+    {file = "requests_oauthlib-2.0.0-py2.py3-none-any.whl", hash = "sha256:7dd8a5c40426b779b0868c404bdef9768deccf22749cde15852df527e6269b36"},
+]
+
+[package.dependencies]
+oauthlib = ">=3.0.0"
+requests = ">=2.0.0"
+
+[package.extras]
+rsa = ["oauthlib[signedtoken] (>=3.0.0)"]
+
+[[package]]
 name = "requests-unixsocket2"
 version = "0.4.2"
 description = "Use requests to talk HTTP via a UNIX domain socket"
@@ -2008,6 +2079,39 @@ files = [
     {file = "typing_extensions-4.12.2-py3-none-any.whl", hash = "sha256:04e5ca0351e0f3f85c6853954072df659d0d13fac324d0072316b67d7794700d"},
     {file = "typing_extensions-4.12.2.tar.gz", hash = "sha256:1a7ead55c7e559dd4dee8856e3a88b41225abfe1ce8df57b7c13915fe121ffb8"},
 ]
+
+[[package]]
+name = "uamqp"
+version = "1.6.10"
+description = "AMQP 1.0 Client Library for Python"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "uamqp-1.6.10-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:e04f606db36b770cac4fb5df26da496d2e6f09b03f4187be4a9e5034f37482b5"},
+    {file = "uamqp-1.6.10-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:e33b9368b2790daf563ec348e7e5e37013cd949dc74f5c3705d248f8a512a780"},
+    {file = "uamqp-1.6.10-cp310-cp310-win32.whl", hash = "sha256:9b51e84896299b839f2087a024414b0946da6a973444a71544aef62b35044422"},
+    {file = "uamqp-1.6.10-cp310-cp310-win_amd64.whl", hash = "sha256:2f1eeed4a9dc75aa31548ac7f59a758bdb10aedc82315286f22d8824d29b2281"},
+    {file = "uamqp-1.6.10-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:6f62f974371e90ea70d8b9a4926c71cff7ff7a308b21c59fa60eb332ee9e0c07"},
+    {file = "uamqp-1.6.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:c63f3f867385681be7ce1b0a3b8a1bea49d0111a700acfd6403749ff1c58a951"},
+    {file = "uamqp-1.6.10-cp311-cp311-win32.whl", hash = "sha256:7762a04b5df1a2256f666a555869b085485aee5ff96ddcc57589c1eabbac55d9"},
+    {file = "uamqp-1.6.10-cp311-cp311-win_amd64.whl", hash = "sha256:3f24467f4ef51072875225e1ac5465ba33ea86891ebbb32454459aeb311b59b2"},
+    {file = "uamqp-1.6.10-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:00e6a72d048cb391bcf013a740577c159d483b5f70b4477397828d02f35b765f"},
+    {file = "uamqp-1.6.10-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:9df219280f4199a922d266dc63308cedf305af95035b6014467605397d7eb7c5"},
+    {file = "uamqp-1.6.10-cp312-cp312-win32.whl", hash = "sha256:b72ddd9f99e34a16d9de1125d1a4c52ee4f2e1efadebb8765ab0053b7efff988"},
+    {file = "uamqp-1.6.10-cp312-cp312-win_amd64.whl", hash = "sha256:9b9f8dbb88bb818f1f82326ea17aa1bd1d8cdcf77260be7cba935cdf66de7496"},
+    {file = "uamqp-1.6.10-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:290fdf20c51b050cf1d36dabae5037fc2bd9476b1cb26df35f3dda0ac188c87e"},
+    {file = "uamqp-1.6.10-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:a6e7ede4818bc0d430941b365d387734b128d57076a4a3944cd7448821bde5f5"},
+    {file = "uamqp-1.6.10-cp38-cp38-win32.whl", hash = "sha256:c822419026669aa6336e18117467e8ae9811b32239a8f2dbccc346fab3ac2222"},
+    {file = "uamqp-1.6.10-cp38-cp38-win_amd64.whl", hash = "sha256:dfc4277625c2c5ffb052093fd85c6b55fc5dda4a59af4a7fdf3d8aae0aa55e72"},
+    {file = "uamqp-1.6.10-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:09676dc331d279abd548036595e03c8dc17b84ede97b22553b4815f41ef83968"},
+    {file = "uamqp-1.6.10-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:c6b5862a6f1f09947e0c46ac4f78e24c877f8aada7dd38e1e095a2eb32e9de53"},
+    {file = "uamqp-1.6.10-cp39-cp39-win32.whl", hash = "sha256:b7b76a091b29d939988765bd1fbc3e8332586f0c73884a6019ab60a30f43d907"},
+    {file = "uamqp-1.6.10-cp39-cp39-win_amd64.whl", hash = "sha256:37716fbc103fd33fd5e7bb0fe68434c50003b54f3d432a51a9c54988ef41bed4"},
+    {file = "uamqp-1.6.10.tar.gz", hash = "sha256:6e886c56f56dce24558e340b8f2a213287a6965575d348e9473b78f30b0c1a23"},
+]
+
+[package.dependencies]
+certifi = ">=2017.4.17"
 
 [[package]]
 name = "urllib3"
@@ -2358,4 +2462,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "6efb125eba5f52cf2ae711e99da8004bb7af6f222bc56dd42759784ee5685865"
+content-hash = "0364aff65187d56f689855b526794253ddf7afd39fe74ad24359a0d7f43f899f"
