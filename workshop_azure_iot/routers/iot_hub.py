@@ -24,3 +24,11 @@ async def get_device_twin():
         status_code=status.HTTP_200_OK,
         content=await client.get_device_twin(),
     )
+
+
+@router.patch("/device_twin")
+async def patch_device_twin(reported_properties: dict):
+    return JSONResponse(
+        status_code=status.HTTP_200_OK,
+        content=await client.patch_device_twin(reported_properties),
+    )
