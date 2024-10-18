@@ -19,34 +19,31 @@ router = APIRouter(
 
 
 @router.get(
-    "/images/{blob_name}",
-    responses={200: {"content": {"image/jpeg": {}}}},
+    "/{blob_name}",
     response_class=Response,
 )
-async def get_image(
+async def get_blob(
     blob_name: str,
 ):
-    image_bytes = client.download_blob_stream(
-        blob_name=blob_name,
-    )
     return Response(
-        content=image_bytes,
-        media_type="image/jpeg",
+        content=client.download_blob_stream(
+            blob_name=blob_name,
+        ),
     )
 
 
 @router.get(
-    "/images",
+    "/",
 )
-async def list_images():
+async def list_blobs():
     return client.list_blobs()
 
 
 @router.post(
-    "/images",
+    "/",
     status_code=201,
 )
-async def upload_image(
+async def upload_blob(
     file: UploadFile,
     blob_name: str,
 ):
@@ -62,4 +59,22 @@ async def upload_image(
             "message": "Image uploaded successfully",
             "etag": response.get("etag"),
         },
+    )
+
+
+@router.get(
+    "/images/{device_name}/{file_name}",
+    responses={200: {"content": {"image/jpeg": {}}}},
+    response_class=Response,
+)
+async def get_image(
+    device_name: str,
+    file_name: str,
+):
+    image_bytes = client.download_blob_stream(
+        blob_name=f"{device_name}/{file_name}",
+    )
+    return Response(
+        content=image_bytes,
+        media_type="image/jpeg",
     )

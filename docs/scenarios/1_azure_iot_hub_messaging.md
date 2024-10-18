@@ -14,6 +14,9 @@ Here are the steps to configure IoT Hub file uploads: [Configure IoT Hub file up
 ## Edge device
 
 To understand how to use the Azure IoT Hub SDK for Python, we provide a script which is supposed to run on the edge device. This demonstrates how to utilize the SDK to send and receive messages from the Azure IoT Hub.
+To implement features around the Azure IoT Hub, you can refer to the following scripts.
+
+- [Samples for the Azure IoT Hub Device SDK](https://github.com/Azure/azure-iot-sdk-python/tree/main/samples)
 
 ### Upload a file to the Azure Blob Storage
 

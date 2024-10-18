@@ -13,7 +13,7 @@ def test_main():
 
     # list_images
     response = client.get(
-        url=path_format.format("/images"),
+        url=path_format.format("/"),
     )
     assert response.status_code == 200
     logger.info(f"response: {response.json()}")
