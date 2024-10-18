@@ -12,8 +12,7 @@ app = typer.Typer()
 logger = logging.getLogger(__name__)
 
 
-async def receive_direct_method_impl():
-    # https://github.com/Azure/azure-iot-sdk-python/blob/main/samples/async-hub-scenarios/receive_direct_method.py
+async def receive_direct_method():
     device_client = IoTHubDeviceClient.create_from_connection_string(getenv("IOT_HUB_DEVICE_CONNECTION_STRING"))
 
     # connect the client.
@@ -63,22 +62,13 @@ async def receive_direct_method_impl():
 
 
 @app.command()
-def receive_direct_method(
+def main(
     verbose: bool = False,
 ):
     if verbose:
         logging.basicConfig(level=logging.DEBUG)
 
-    asyncio.run(receive_direct_method_impl())
-
-
-@app.command()
-def upload_to_blob(
-    verbose: bool = False,
-):
-    if verbose:
-        logging.basicConfig(level=logging.DEBUG)
-    logger.info("upload_to_blob")
+    asyncio.run(receive_direct_method())
 
 
 if __name__ == "__main__":
