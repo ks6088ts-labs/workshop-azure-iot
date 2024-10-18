@@ -31,3 +31,5 @@ az functionapp create \
     --name "$FUNCTION_APP_NAME" \
     --os-type linux \
     --storage-account "$STORAGE_NAME"
+
+echo "RANDOM_SUFFIX=$RANDOM_SUFFIX, FUNCTION_APP_NAME=$FUNCTION_APP_NAME"

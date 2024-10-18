@@ -28,6 +28,11 @@ Click the button below to deploy the infrastructure to Azure.
 
 ### Application
 
+#### Setup environment variables
+
+To get started, you have to set environment variables in the `*.env` files in the root directory.
+Please refer to the `*.env.template` files for the required environment variables.
+
 ```shell
 # Clone the repository
 $ git clone https://github.com/ks6088ts-labs/workshop-azure-iot.git
@@ -36,42 +41,64 @@ $ git clone https://github.com/ks6088ts-labs/workshop-azure-iot.git
 $ cd workshop-azure-iot
 
 # Prepare the environment files based on the templates
-$ find . -maxdepth 1 -name "*.env.template" -exec sh -c 'cp "$1" "${1%.env.template}.env"' _ {} \;
+$ make env
+```
 
-# Update the environment files with your values
+Please update the environment files to fit your environment.
 
-# Run CI test locally to check the environment
-make ci-test
+#### How to run
 
+**Connection test**
+
+Following commands are for testing the connection to the Azure resources.
+Passing the test means the environment is set up correctly.
+
+```shell
+# Run test locally to check the environment is set up correctly
+$ make test
+```
+
+**Run FastAPI server locally**
+
+```shell
+# Install dependencies
+$ make install-deps
+
+# Run FastAPI server locally
+$ make server
+```
+
+**Run FastAPI server locally from Docker image**
+
+Docker is required to run the FastAPI server locally from the Docker image.
+The image for this project is available on Docker Hub.
+See the Docker Hub repository: [ks6088ts/workshop-azure-iot](https://hub.docker.com/repository/docker/ks6088ts/workshop-azure-iot/general).
+
+```shell
+# Run FastAPI server locally from Docker image
+$ make docker-run
+```
+
+**Run Azure Functions locally**
+
+```shell
+# Run Azure Functions locally
+$ make azure-functions
+```
+
+**Deploy Azure Functions**
+
+```shell
 # Deploy Azure Functions resources
-$ bash scripts/deploy_azure_functions_resources.sh
+$ make azure-functions-deploy
 
 # Publish Azure Functions
 $ export FUNCTION_APP_NAME=adhoc-azure-functions-RANDOM_SUFFIX
-$ bash scripts/publish_azure_functions.sh
+$ make azure-functions-publish
 ```
 
 ## References
 
 ### Azure Functions
-
-Run the function app locally
-
-```shell
-# Run the function app locally with the Azure Functions Core Tools
-$ poetry run func start
-```
-
-Deploy the function app to Azure
-
-```shell
-# Deploy resources to Azure
-$ bash scripts/deploy_azure_functions_resources.sh
-
-$ export FUNCTION_APP_NAME="CHANGE_ME"
-
-# Publish the function app to Azure
-$ bash scripts/publish_azure_functions.sh
-```
 
 - [Using FastAPI Framework with Azure Functions](https://learn.microsoft.com/en-us/samples/azure-samples/fastapi-on-azure-functions/fastapi-on-azure-functions/)
