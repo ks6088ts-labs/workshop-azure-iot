@@ -49,7 +49,7 @@ ci-test: install-deps-dev format-check lint test ## run CI tests
 # ---
 DOCKER_REPO_NAME ?= ks6088ts
 DOCKER_IMAGE_NAME ?= workshop-azure-iot
-DOCKER_COMMAND ?= python main.py --help
+DOCKER_COMMAND ?=
 
 # Tools
 TOOLS_DIR ?= $(HOME)/.local/bin
@@ -65,7 +65,14 @@ docker-build: ## build Docker image
 
 .PHONY: docker-run
 docker-run: ## run Docker container
-	docker run --rm $(DOCKER_REPO_NAME)/$(DOCKER_IMAGE_NAME):$(GIT_TAG) $(DOCKER_COMMAND)
+	docker run --rm \
+		-v $(PWD)/ai_services.env:/app/ai_services.env \
+		-v $(PWD)/blob_storage.env:/app/blob_storage.env \
+		-v $(PWD)/core.env:/app/core.env \
+		-v $(PWD)/iot_hub.env:/app/iot_hub.env \
+		-p 8000:8000 \
+		$(DOCKER_REPO_NAME)/$(DOCKER_IMAGE_NAME):$(GIT_TAG) \
+		$(DOCKER_COMMAND)
 
 .PHONY: docker-lint
 docker-lint: ## lint Dockerfile
@@ -78,7 +85,7 @@ docker-scan: ## scan Docker image
 	trivy image $(DOCKER_REPO_NAME)/$(DOCKER_IMAGE_NAME):$(GIT_TAG)
 
 .PHONY: ci-test-docker
-ci-test-docker: docker-lint docker-build docker-scan docker-run ## run CI test for Docker
+ci-test-docker: docker-lint docker-build docker-scan ## run CI test for Docker
 
 # ---
 # Docs
