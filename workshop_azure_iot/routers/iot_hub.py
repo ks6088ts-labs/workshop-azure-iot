@@ -32,3 +32,17 @@ async def patch_device_twin(reported_properties: dict):
         status_code=status.HTTP_200_OK,
         content=await client.patch_device_twin(reported_properties),
     )
+
+
+@router.post("/call_direct_method")
+async def call_direct_method(
+    method_name: str,
+    payload: dict,
+):
+    return JSONResponse(
+        status_code=status.HTTP_200_OK,
+        content=await client.call_direct_method(
+            method_name=method_name,
+            payload=payload,
+        ),
+    )

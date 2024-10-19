@@ -2,6 +2,8 @@ from enum import Enum
 from logging import getLogger
 
 from azure.iot.device.aio import IoTHubDeviceClient
+from azure.iot.hub import IoTHubRegistryManager
+from azure.iot.hub.models import CloudToDeviceMethod, CloudToDeviceMethodResult
 
 from workshop_azure_iot.settings.iot_hub import Settings
 
@@ -42,3 +44,17 @@ class Client:
         # https://learn.microsoft.com/azure/iot-hub/how-to-device-twins?pivots=programming-language-python#patch-reported-device-twin-properties
         await self.connect()
         await self.device_client.patch_twin_reported_properties(reported_properties_patch=reported_properties)
+
+    async def call_direct_method(self, method_name: str, payload: dict):
+        # https://learn.microsoft.com/ja-jp/azure/iot-hub/device-management-python#create-a-device-app-with-a-direct-method
+        try:
+            registry_manager = IoTHubRegistryManager(connection_string=self.settings.iot_hub_connection_string)
+            deviceMethod = CloudToDeviceMethod(method_name=method_name, payload=payload)
+            response: CloudToDeviceMethodResult = registry_manager.invoke_device_method(
+                device_id=self.settings.iot_hub_device_id,
+                direct_method_request=deviceMethod,
+            )
+        except Exception as e:
+            logger.error(f"Failed to connect to IoT Hub: {e}")
+            return {"error": f"Failed to connect to IoT Hub: {e}"}
+        return response.as_dict()

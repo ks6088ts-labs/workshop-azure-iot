@@ -59,3 +59,61 @@ $ poetry run python scripts/receive_direct_method.py --verbose
 [receive_direct_method.py](https://github.com/Azure/azure-iot-sdk-python/blob/main/samples/async-hub-scenarios/receive_direct_method.py) is a sample code provided by the Azure IoT SDK for Python.
 
 ## Cloud
+
+Run API server locally to provide RESTful APIs for the edge device.
+
+```shell
+$ make server
+```
+
+## Demo
+
+### Setup
+
+1. Run the API server. (on local, Docker, or Azure Functions etc.)
+
+```shell
+$ make server
+```
+
+2. Run the edge device script to receive direct method requests.
+
+```shell
+$ poetry run python scripts/receive_direct_method.py --verbose
+```
+
+### Send a request to the API server to call the direct method.
+
+Go to docs url which shows Swagger UI and send a request to the API server to call the direct method.
+
+1. Call the direct method from API server.
+
+From the Swagger UI, call `POST /iot_hub/call_direct_method` with the following request body.
+
+- `method_name`: The name of the direct method to call. (e.g. `capture_image_from_file`)
+- `payload`: The payload to send to the direct method. (e.g. `{"filename": "./docs/assets/1_architecture.png","blob_name": "1_architecture.png"}`)
+
+2. Check the result.
+
+From the Swagger UI, call `GET /blob_storage` to check the uploaded file.
+
+3. Get the uploaded file.
+
+Call `GET /blob_storage/images/{device_name}/{file_name}` to get the uploaded file.
+
+4. Explain the image by Azure OpenAI API.
+
+Call `POST /ai_services/chat/completions_with_image` with the following request body.
+
+- `prompt`: The prompt to send to the OpenAI API.
+- `file`: The image file to send to the Azure OpenAI API.
+
+### Play with Device Twin
+
+1. Update the device twin.
+
+- `GET /iot_hub/device_twin` to get the device twin.
+
+2. Check the updated device twin.
+
+- `PATCH /iot_hub/device_twin` to update the device twin.
