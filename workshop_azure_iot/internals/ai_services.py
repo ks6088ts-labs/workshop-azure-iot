@@ -1,10 +1,9 @@
-from logging import getLogger
-
 from openai import AsyncAzureOpenAI
 
 from workshop_azure_iot.settings.ai_services import Settings
+from workshop_azure_iot.utilities import get_logger
 
-logger = getLogger(__name__)
+logger = get_logger(name=__name__)
 
 
 class Client:

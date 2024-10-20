@@ -1,13 +1,13 @@
 from enum import Enum
-from logging import getLogger
 
 from azure.iot.device.aio import IoTHubDeviceClient
 from azure.iot.hub import IoTHubRegistryManager
 from azure.iot.hub.models import CloudToDeviceMethod, CloudToDeviceMethodResult
 
 from workshop_azure_iot.settings.iot_hub import Settings
+from workshop_azure_iot.utilities import get_logger
 
-logger = getLogger(__name__)
+logger = get_logger(name=__name__)
 
 
 class State(Enum):
@@ -26,12 +26,14 @@ class Client:
     async def connect(self):
         if self.state == State.CONNECTED:
             return
+        logger.info("Connecting to IoT Hub")
         await self.device_client.connect()
         self.state = State.CONNECTED
 
     async def shutdown(self):
         if self.state == State.DISCONNECTED:
             return
+        logger.info("Shutting down IoT Hub connection")
         await self.device_client.shutdown()
         self.state = State.DISCONNECTED
 

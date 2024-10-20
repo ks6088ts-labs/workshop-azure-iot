@@ -1,11 +1,10 @@
-from logging import getLogger
-
 from fastapi import APIRouter
 
 from workshop_azure_iot.settings.core import CoreSettings
+from workshop_azure_iot.utilities import get_logger
 
-logger = getLogger(__name__)
 settings = CoreSettings()
+logger = get_logger(name=__name__)
 
 router = APIRouter(
     prefix="/core",
