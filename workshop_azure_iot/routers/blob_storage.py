@@ -1,12 +1,11 @@
-from logging import getLogger
-
 from fastapi import APIRouter, UploadFile, status
 from fastapi.responses import JSONResponse, Response
 
 from workshop_azure_iot.internals.blob_storage import Client
 from workshop_azure_iot.settings.blob_storage import Settings
+from workshop_azure_iot.utilities import get_logger
 
-logger = getLogger(__name__)
+logger = get_logger(name=__name__)
 
 client = Client(
     settings=Settings(),

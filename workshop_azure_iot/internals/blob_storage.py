@@ -1,10 +1,9 @@
-from logging import getLogger
-
 from azure.storage.blob import BlobServiceClient
 
 from workshop_azure_iot.settings.blob_storage import Settings
+from workshop_azure_iot.utilities import get_logger
 
-logger = getLogger(__name__)
+logger = get_logger(name=__name__)
 
 
 class Client:
