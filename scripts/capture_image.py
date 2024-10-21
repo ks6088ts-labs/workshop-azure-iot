@@ -18,6 +18,9 @@ def capture_image_from_file(filename: str) -> bytes:
 
 def capture_image_from_camera(index: int) -> bytes:
     camera = cv2.VideoCapture(index=index)
+    import time
+
+    time.sleep(2)  # FIXME: Warm-up time
     return_value, image = camera.read()
     del camera
     if not return_value:
