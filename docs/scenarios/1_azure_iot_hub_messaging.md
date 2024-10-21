@@ -8,8 +8,20 @@ This scenario demonstrates how to handle messages from an Azure IoT Hub using th
 
 ## Setup
 
+### Configure IoT Hub file uploads via Azure Portal
+
 After you deploy the Azure IoT Hub, you need to configure IoT Hub file uploads. This is required to upload files from the IoT Hub to the Azure Blob Storage.
 Here are the steps to configure IoT Hub file uploads: [Configure IoT Hub file uploads using the Azure portal](https://learn.microsoft.com/azure/iot-hub/iot-hub-configure-file-upload)
+
+It is recommended to use managed identities to access the Azure Blob Storage from the Azure IoT Hub. See how to configure managed identities for IoT Hub: [Configure file upload with managed identities](https://learn.microsoft.com/en-us/azure/iot-hub/iot-hub-managed-identity?tabs=portal#configure-file-upload-with-managed-identities)
+
+### Configure Azure Cosmos DB as a routing endpoint
+
+To pass messages from the Azure IoT Hub to the Azure Cosmos DB, you need to configure Azure Cosmos DB as a routing endpoint.
+
+- [General Availability: Azure IoT Hub supports Azure Cosmos DB routing endpoint now!](https://techcommunity.microsoft.com/t5/internet-of-things-blog/general-availability-azure-iot-hub-supports-azure-cosmos-db/ba-p/3945877)
+- [IoT Hub endpoints > Azure Cosmos DB as a routing endpoint](https://learn.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-endpoints#azure-cosmos-db-as-a-routing-endpoint)
+- [IoT Hub support for managed identities](https://learn.microsoft.com/en-us/azure/iot-hub/iot-hub-managed-identity?WT.mc_id=Portal-Microsoft_Azure_IotHub&tabs=portal)
 
 ## Edge device
 
@@ -90,8 +102,10 @@ Go to docs url which shows Swagger UI and send a request to the API server to ca
 
 From the Swagger UI, call `POST /iot_hub/call_direct_method` with the following request body.
 
-- `method_name`: The name of the direct method to call. (e.g. `capture_image_from_file`)
-- `payload`: The payload to send to the direct method. (e.g. `{"filename": "./docs/assets/1_architecture.png","blob_name": "1_architecture.png"}`)
+| method_name               | payload                                                                   |
+| ------------------------- | ------------------------------------------------------------------------- |
+| capture_image_from_file   | {"filename": "./docs/assets/1_architecture.png", "blob_name": "file.png"} |
+| capture_image_from_camera | {"index": 0, "blob_name": "capture0.png"}                                 |
 
 2. Check the result.
 
