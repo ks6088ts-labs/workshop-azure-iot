@@ -132,3 +132,7 @@ server: ## run server
 .PHONY: env
 env: ## create env files
 	@sh scripts/create_env_files.sh
+
+.PHONY: mosquitto
+mosquitto: ## run mosquitto
+	cd configs/mosquitto && mosquitto -c tls.conf
