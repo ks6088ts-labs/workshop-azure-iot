@@ -8,6 +8,7 @@ nav:
   - Scenarios:
     - 1. Azure IoT Hub Messaging: scenarios/1_azure_iot_hub_messaging.md
     - 2. Azure Event Grid Messaging: scenarios/2_azure_event_grid_messaging.md
+    - 3. Generic Messaging: scenarios/3_generic_messaging.md
 theme:
   name: material
   # https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#automatic-light-dark-mode
