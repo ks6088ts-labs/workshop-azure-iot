@@ -39,5 +39,16 @@ services:
       - 8000:8000
     restart: always
     command: python scripts/prometheus.py --num-devices 5 --port 8000
+  iot-edge:
+    build:
+      context: .
+      dockerfile: iotedge.Dockerfile
+    privileged: true
+    command: /sbin/init
+    environment:
+      - DEVICE_CONNECTION_STRING=${DEVICE_CONNECTION_STRING}
+    volumes:
+      - ${PWD}/scripts/install-iot-edge.sh:/install-iot-edge.sh
+
 volumes:
   grafana-data:
