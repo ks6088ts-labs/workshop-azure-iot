@@ -1,0 +1,43 @@
+services:
+  grafana:
+    image: grafana/grafana:11.0.0
+    container_name: grafana
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ${PWD}/configs/grafana/datasources:/etc/grafana/provisioning/datasources
+      - ${PWD}/configs/grafana/dashboards_settings:/etc/grafana/provisioning/dashboards
+      - ${PWD}/configs/grafana/dashboards:/var/lib/grafana/dashboards
+    restart: always
+  prometheus:
+    image: prom/prometheus:v2.52.0
+    ports:
+      - 9090:9090
+    volumes:
+      - ${PWD}/configs/prometheus:/etc/prometheus
+    restart: always
+  node-exporter:
+    image: prom/node-exporter:v1.8.1
+    container_name: node-exporter
+    ports:
+      - 9100:9100
+  alertmanager:
+    image: prom/alertmanager:v0.27.0
+    container_name: alertmanager
+    ports:
+      - 9093:9093
+    volumes:
+      - ${PWD}/configs/alertmanager:/etc/alertmanager
+    restart: always
+  prometheus-client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: prometheus-client
+    ports:
+      - 8000:8000
+    restart: always
+    command: python scripts/prometheus.py --num-devices 5 --port 8000
+volumes:
+  grafana-data:

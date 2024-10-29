@@ -19,6 +19,7 @@ openai = "^1.52.0"
 azure-storage-blob = "^12.23.1"
 opencv-python-headless = "^4.10.0.84"
 azure-iot-hub = "^2.6.1"
+prometheus-client = "^0.21.0"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^4.0.1"

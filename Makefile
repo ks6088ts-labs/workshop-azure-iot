@@ -91,13 +91,15 @@ ci-test-docker: docker-lint docker-build docker-scan ## run CI test for Docker
 # Docs
 # ---
 
+DEV_ADDR ?= localhost:8080
+
 .PHONY: docs
 docs: ## build documentation
 	poetry run mkdocs build
 
 .PHONY: docs-serve
 docs-serve: ## serve documentation
-	poetry run mkdocs serve
+	poetry run mkdocs serve --dev-addr $(DEV_ADDR)
 
 .PHONY: ci-test-docs
 ci-test-docs: docs ## run CI test for documentation
