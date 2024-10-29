@@ -8,7 +8,7 @@ This scenario demonstrates how to handle messages from Azure Event Grid.
 
 ## Setup
 
-Refer to [Quickstart: Publish and subscribe to MQTT messages on Event Grid Namespace with Azure portal](https://learn.microsoft.com/en-us/azure/event-grid/mqtt-publish-and-subscribe-portal) to create an Event Grid Namespace and a topic.
+Refer to [Quickstart: Publish and subscribe to MQTT messages on Event Grid Namespace with Azure portal](https://learn.microsoft.com/azure/event-grid/mqtt-publish-and-subscribe-portal) to create an Event Grid Namespace and a topic.
 
 [Azure-Samples/MqttApplicationSamples](https://github.com/Azure-Samples/MqttApplicationSamples) provides a sample application to publish and subscribe messages to the Event Grid.
 
@@ -87,3 +87,22 @@ poetry run python scripts/event_grid.py publish \
     --host-name $HOST_NAME \
     --verbose
 ```
+
+### Use namespace topics to route MQTT messages to Azure Event Hubs
+
+To set up resources for this scenario, refer to [Tutorial: Use namespace topics to route MQTT messages to Azure Event Hubs (Azure portal)](https://learn.microsoft.com/azure/event-grid/mqtt-routing-to-event-hubs-portal-namespace-topics).
+
+After deploying the scenario, do the following steps:
+
+- [Create a namespace topic](https://learn.microsoft.com/azure/event-grid/mqtt-routing-to-event-hubs-portal-namespace-topics#create-a-namespace-topic) on the Event Grid Namespace.
+- [Give Event Grid namespace the access to send events to the event hub](https://learn.microsoft.com/azure/event-grid/mqtt-routing-to-event-hubs-portal-namespace-topics#give-event-grid-namespace-the-access-to-send-events-to-the-event-hub)
+- [Create an event subscription with Event Hubs as the endpoint](https://learn.microsoft.com/azure/event-grid/mqtt-routing-to-event-hubs-portal-namespace-topics#create-an-event-subscription-with-event-hubs-as-the-endpoint)
+- [Configure routing in the Event Grid namespace](https://learn.microsoft.com/azure/event-grid/mqtt-routing-to-event-hubs-portal-namespace-topics#create-an-event-subscription-with-event-hubs-as-the-endpoint)
+
+Send MQTT messages to the topic and check the messages in the Event Hub, as described in [View routed MQTT messages in Event Hubs by using a Stream Analytics query](https://learn.microsoft.com/azure/event-grid/mqtt-routing-to-event-hubs-portal-namespace-topics#view-routed-mqtt-messages-in-event-hubs-by-using-a-stream-analytics-query)
+
+## References
+
+- [Automotive messaging, data & analytics reference architecture](https://learn.microsoft.com/azure/event-grid/mqtt-automotive-connectivity-and-data-solution)
+
+[![architecture](https://learn.microsoft.com/azure/event-grid/media/mqtt-automotive-connectivity-and-data-solution/messaging-dataflow.png)](https://learn.microsoft.com/azure/event-grid/media/mqtt-automotive-connectivity-and-data-solution/messaging-dataflow.png)
