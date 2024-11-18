@@ -25,7 +25,7 @@ prometheus-client = "^0.21.0"
 pre-commit = "^4.0.1"
 ruff = "^0.7.3"
 pytest = "^8.3.3"
-coverage = "^7.6.4"
+coverage = "^7.6.7"
 pytest-cov = "^6.0.0"
 
 
