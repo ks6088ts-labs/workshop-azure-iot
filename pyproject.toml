@@ -15,7 +15,7 @@ fastapi = {extras = ["standard"], version = "^0.115.4"}
 azure-functions = "^1.21.3"
 pydantic-settings = "^2.6.1"
 azure-iot-device = "^2.14.0"
-openai = "^1.55.2"
+openai = "^1.64.0"
 azure-storage-blob = "^12.23.1"
 opencv-python-headless = "^4.10.0.84"
 azure-iot-hub = "^2.6.1"
